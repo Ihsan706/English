@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Link Generator</title>
+</head>
+<body>
+  <h1>Generated Links</h1>
+  <div id="link-container">
+    <!-- Links will be injected here -->
+  </div>
+
+  <script>
+    // List of URLs to convert into <a> tags
+    const urls = [
+      'https://dictionary.cambridge.org/dictionary/english/overwhelming',
+      'https://osf.io/pjfcd',
+      'https://quran.ksu.edu.sa/index.php#aya=24_43&m=hafs&qaree=husary&trans=ar_mu',
+      'https://bureauofmeteorology.org/blogs/weather-and-health/the-psychology-of-weather-how-it-affects-our-mood',
+      'https://www.verywellmind.com/how-weather-changes-can-affect-your-mental-health-5222029',
+      'https://www.psychologytoday.com/us/blog/the-human-beast/202004/why-weather-affects-mood?msockid=360f228cec856d1f299a37c6ed8c6c11',
+      'https://bmcpsychology.biomedcentral.com/articles/10.1186/s40359-024-02005-z',
+      'https://sites.utexas.edu/think-twice/2024/09/24/does-weather-affect-mood/#:~:text=Regarding%20mood%20and%20weather%2C%20most%20of%20the%20experimental,daily%20weather%20was%20not%20associated%20with%20mood%20%286%29.'
+    ];
+
+    // Utility to fetch the <title> of a page via a proxy (to avoid CORS issues)
+    async function fetchTitle(url) {
+      try {
+        // If you control a server, you can set up a simple CORS‐enabled proxy.
+        // For demo purposes, we'll use the "allorigins" public proxy:
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        const response = await fetch(proxyUrl + encodeURIComponent(url));
+        const text = await response.text();
+        // Extract the <title> content
+        const match = text.match(/<title>(.*?)<\/title>/i);
+        return match ? match[1].trim() : url;
+      } catch (err) {
+        console.error('Error fetching title for', url, err);
+        return url;
+      }
+    }
+
+    async function createLinks() {
+      const container = document.getElementById('link-container');
+      for (const url of urls) {
+        const title = await fetchTitle(url);
+        const a = document.createElement('a');
+        a.href = url;
+        a.textContent = title;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        // Optionally wrap each link in a paragraph for spacing
+        const p = document.createElement('p');
+        p.appendChild(a);
+        container.appendChild(p);
+      }
+    }
+
+    // Kick off the link creation
+    createLinks();
+  </script>
+</body>
+</html>
