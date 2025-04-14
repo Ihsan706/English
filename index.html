@@ -2,11 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dynamic Link Generator</title>
+  <title>Ihsan project</title>
+  <style>
+    body{
+      color:black;
+    }
+    .hello{
+          color: white;
+          text-align: center;
+    }
+    .p{
+          text-align: center;
+    font-size: 5vw;
+    /* color: beige; */
+    background: grey;
+    border-radius: 10rem;
+    }
+    .a{
+          color: blue;
+    text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Generated Links</h1>
-  <div id="link-container">
+  <h1>مشروع احسان سميح الشريف</h1>
+  <div id="link-made-by-Ihsan">
     <!-- Links will be injected here -->
   </div>
 
@@ -41,7 +61,7 @@
     }
 
     async function createLinks() {
-      const container = document.getElementById('link-container');
+      const container = document.getElementById('link-made-by-Ihsan');
       for (const url of urls) {
         const title = await fetchTitle(url);
         const a = document.createElement('a');
@@ -49,8 +69,10 @@
         a.textContent = title;
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
+        a.className = 'a';
         // Optionally wrap each link in a paragraph for spacing
         const p = document.createElement('p');
+        p.className = 'p';
         p.appendChild(a);
         container.appendChild(p);
       }
