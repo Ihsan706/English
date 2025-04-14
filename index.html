@@ -51,7 +51,7 @@
       'https://www.verywellmind.com/how-weather-changes-can-affect-your-mental-health-5222029',
       'https://www.psychologytoday.com/us/blog/the-human-beast/202004/why-weather-affects-mood?msockid=360f228cec856d1f299a37c6ed8c6c11',
       'https://bmcpsychology.biomedcentral.com/articles/10.1186/s40359-024-02005-z',
-      'https://sites.utexas.edu/think-twice/2024/09/24/does-weather-affect-mood/#:~:text=Regarding%20mood%20and%20weather%2C%20most%20of%20the%20experimental,daily%20weather%20was%20not%20associated%20with%20mood%20%286%29.'
+      'https://sites.utexas.edu/think-twice/2024/09/24/does-weather-affect-mood/#:~:text=Regarding%20mood%20and%20weather%2C%20most%20of%20the%20experimental,daily%20weather%20was%20not%20associated%20with%20mood%20%286%29'
     ];
 
     // Utility to fetch the <title> of a page via a proxy (to avoid CORS issues)
@@ -83,17 +83,16 @@
         a.rel = 'noopener noreferrer';
         a.className = 'a';
         // Optionally wrap each link in a paragraph for spacing
-                setTimeout(() => {
         const p = document.createElement('p');
-                                      }, 2000);
         p.className = 'p';
         p.appendChild(a);
         container.appendChild(p);
       }
     }
-
+                setTimeout(() => {
     // Kick off the link creation
     createLinks();
+                                                        }, 2000);
   </script>
 </body>
 </html>
