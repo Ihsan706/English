@@ -74,7 +74,6 @@
     async function createLinks() {
       const container = document.getElementById('link-made-by-Ihsan');
       for (const url of urls) {
-        setTimeout(() => {
     console.log("This message appears after 2 seconds.");
         const title = await fetchTitle(url);
         const a = document.createElement('a');
@@ -84,11 +83,12 @@
         a.rel = 'noopener noreferrer';
         a.className = 'a';
         // Optionally wrap each link in a paragraph for spacing
+                setTimeout(() => {
         const p = document.createElement('p');
+                                      }, 2000);
         p.className = 'p';
         p.appendChild(a);
         container.appendChild(p);
-          }, 2000);
       }
     }
 
